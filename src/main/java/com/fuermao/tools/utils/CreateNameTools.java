@@ -23,9 +23,6 @@ public class CreateNameTools {
 	 */
 	private static final Random random;
 
-	/**
-	 * 静态代码块，用于创建 Random 实例
-	 */
 	static {
 		random = new Random();
 	}

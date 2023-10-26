@@ -33,9 +33,7 @@ class AgeSegmentationTest {
 				AgeSegmentation.getAgeSegmentationByIndex(index);
 			});
 		} else {
-			EnumConstantNotPresentException exception = Assertions.assertThrows(EnumConstantNotPresentException.class, () -> {
-				AgeSegmentation.getAgeSegmentationByIndex(index);
-			});
+			EnumConstantNotPresentException exception = Assertions.assertThrows(EnumConstantNotPresentException.class, () -> AgeSegmentation.getAgeSegmentationByIndex(index));
 			StringWriter stringWriter = new StringWriter();
 			PrintWriter printWriter = new PrintWriter(stringWriter);
 			exception.printStackTrace(printWriter);
@@ -49,9 +47,7 @@ class AgeSegmentationTest {
 	@ValueSource(ints = {-1,0,1,6,7,8,12,17,18,35,45,46,50,69,70,80,120,121})
 	void judgeAgeSegmentation(int age) {
 		if(age < AgeSegmentation.getSegmentationAgeMin() || age > AgeSegmentation.getSegmentationAgeMax()){
-			Exception exception = Assertions.assertThrows(EnumConstantNotPresentException.class,()->{
-				AgeSegmentation.judgeAgeSegmentation(age);
-			});
+			Exception exception = Assertions.assertThrows(EnumConstantNotPresentException.class,()-> AgeSegmentation.judgeAgeSegmentation(age));
 			StringWriter stringWriter = new StringWriter();
 			PrintWriter writer = new PrintWriter(stringWriter);
 			exception.printStackTrace(writer);
