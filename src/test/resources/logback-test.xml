@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <!-- 自定义配色 -->
+    <conversionRule conversionWord="customColor" converterClass="com.fuermao.tools.config.LogbackColorfulConfig"/>
+    <!-- 全局变量 -->
+
+    <!-- 输出源配置 -->
+    <appender name="CONSOLE_APPENDER" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <immediateFlush>true</immediateFlush>
+        <withJansi>false</withJansi>
+        <encoder>
+            <pattern>
+                %white(┏ %d{yyyy-MM-dd HH:mm:ss.SSS}) %customColor([%5level]) %white([%10.10t] %30.30lo{29})：%n%white(┗ 日志信息：%msg%n)
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 日志记录器配置 -->
+    <root level="Trace">
+        <appender-ref ref="CONSOLE_APPENDER"/>
+    </root>
+</configuration>
