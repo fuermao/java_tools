@@ -43,12 +43,11 @@ public class LogToLogger {
 	 * 将异常信息记录到日志中
 	 * @param throwable Throwable 异常信息
 	 * @param logger Logger 日志记录器
-	 * @param level Level 日志等级
 	 */
-	public static void throwableToLogger(Throwable throwable, Logger logger, Level level){
+	public static void throwableToLogger(Throwable throwable, Logger logger){
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 		throwable.printStackTrace(printWriter);
-		log(stringWriter.toString(),logger,level);
+		log(stringWriter.toString(),logger,Level.ERROR);
 	}
 }
