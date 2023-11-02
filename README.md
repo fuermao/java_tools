@@ -94,3 +94,22 @@ class StatisticsRunTimeToolsTest {
   }
 }
 ```
+### LogToLogger
+将信息记录到日志记录器中，提供了两个公共方法，如下：
+```java
+/**
+ * 根据日志等级将信息输出到日志中
+ * @param logStr String 需要记录的日志信息
+ * @param logger Logger 日志记录器
+ * @param level Level 日志等级
+ */
+public static void log(String logStr,Logger logger,Level level)
+
+/**
+ * 将异常信息记录到日志中
+ * @param throwable Throwable 异常信息
+ * @param logger Logger 日志记录器
+ * @param level Level 日志等级
+ */
+public static void throwableToLogger(Throwable throwable, Logger logger, Level level)
+```
