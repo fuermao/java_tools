@@ -1,4 +1,6 @@
-package com.fuermao.tools.entity;
+package com.fuermao.tools.constant;
+
+import com.fuermao.tools.exception.AgeSegmentationEnumException;
 
 /**
  * 年龄分段
@@ -121,56 +123,74 @@ public enum AgeSegmentation {
 
 	/**
 	 * 获取整个分段的最大值
+	 *
 	 * @return int 允许的年龄最大值
 	 */
-	public static int getSegmentationAgeMax(){
+	public static int getSegmentationAgeMax() {
 		return AGED.maxAge;
 	}
 
 	/**
 	 * 获取整个分段的最小值
+	 *
 	 * @return int 允许年龄的最小值
 	 */
-	public static int getSegmentationAgeMin(){
+	public static int getSegmentationAgeMin() {
 		return INFANT.minAge;
 	}
 
 	/**
 	 * 根据索引值获取年龄分段
+	 *
 	 * @param index int 年龄段索引值
 	 * @return AgeSegmentation 枚举类
-	 * @throws EnumConstantNotPresentException 枚举常量不存在异常
+	 * @throws AgeSegmentationEnumException 枚举常量不存在异常
 	 */
-	public static AgeSegmentation getAgeSegmentationByIndex(int index) throws EnumConstantNotPresentException {
+	public static AgeSegmentation getAgeSegmentationByIndex(int index) throws AgeSegmentationEnumException {
 		AgeSegmentation[] ageSegmentations = values();
 		for (AgeSegmentation ageSegmentation : ageSegmentations) {
-			if(index == ageSegmentation.getIndex()){
+			if (index == ageSegmentation.getIndex()) {
 				return ageSegmentation;
 			}
 		}
-		String formatStr = String.format("不存在索引值为 %d 的年龄段枚举常量！%n",index);
-		throw new EnumConstantNotPresentException(AgeSegmentation.class,formatStr);
+		String formatStr = String.format("不存在索引值为 %d 的年龄段枚举常量！%n", index);
+		throw new AgeSegmentationEnumException(AgeSegmentation.class, "年龄分段异常", formatStr);
 	}
 
 	/**
 	 * 根据年龄判断年龄分段
+	 *
 	 * @return AgeSegmentation 年龄分段信息
 	 */
-	public static AgeSegmentation judgeAgeSegmentation(int age){
+	public static AgeSegmentation judgeAgeSegmentation(int age) {
 		AgeSegmentation[] segmentations = AgeSegmentation.values();
-		if(age < getSegmentationAgeMin() || age > getSegmentationAgeMax()){
-			String errorMsg = String.format("传入的参数（%d）超出了年龄的范围！%n", age);
-			throw new EnumConstantNotPresentException(AgeSegmentation.class,errorMsg);
+		int min = getSegmentationAgeMin();
+		int max = getSegmentationAgeMax();
+		if(!judgeAgeRange(age)){
+			String errorMsg = String.format("传入的年龄参数（%d）超出了年龄的允许范围（%d~%d）！%n", age,min,max);
+			throw new AgeSegmentationEnumException(AgeSegmentation.class, "年龄分段异常", errorMsg);
 		} else {
 			AgeSegmentation result = null;
-			for (AgeSegmentation segmentation:segmentations) {
-				if(segmentation.minAge <= age && age <= segmentation.maxAge){
+			for (AgeSegmentation segmentation : segmentations) {
+				if (segmentation.minAge <= age && age <= segmentation.maxAge) {
 					result = segmentation;
 					break;
 				}
 			}
 			return result;
 		}
+	}
+
+	/**
+	 * 判断年龄在最小以及最大年龄区间
+	 * @param age int 年龄
+	 * @return boolean      true    —— 满足年龄范围
+	 *                      false   —— 不满足年龄范围
+	 */
+	public static boolean judgeAgeRange(int age){
+		int min = AgeSegmentation.getSegmentationAgeMin();
+		int max = AgeSegmentation.getSegmentationAgeMax();
+		return age >= min && age <= max;
 	}
 
 	@Override

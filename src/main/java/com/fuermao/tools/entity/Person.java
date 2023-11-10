@@ -1,5 +1,6 @@
 package com.fuermao.tools.entity;
 
+import com.fuermao.tools.constant.AgeSegmentation;
 import com.fuermao.tools.utils.CreateNameTools;
 
 import java.util.Random;
@@ -11,79 +12,40 @@ public class Person implements Cloneable {
 	/**
 	 * 名字
 	 */
-	private String name;
+	private String name = null;
 
 	/**
 	 * 年龄
 	 */
-	private int age;
+	private int age = - 1;
 
 	/**
 	 * 年龄分段
 	 */
 	private AgeSegmentation segmentation;
 
+	{
+		random = new Random();
+	}
+
 	/**
-	 * 无参构造
+	 * 无参构造器
 	 */
 	public Person() {
-		random = new Random();
-		// 随机生成名字
-		this.setName();
-		this.setAge();
+		// 随机生成姓名以及年龄
+		setName();
+		setAge();
 	}
 
-	/**
-	 * 有参构造方法
-	 *
-	 * @param name String 名字
-	 * @param age  int 年龄
-	 */
 	public Person(String name, int age) {
-		this();
-		this.setName(name);
-		this.setAge(age);
-	}
-
-	/**
-	 * 设置指定年龄
-	 *
-	 * @param age int 年龄
-	 */
-	public void setAge(int age) {
-		// 根据年龄获取年龄分段信息
-		setSegmentation(AgeSegmentation.judgeAgeSegmentation(age));
-		this.age = age;
-	}
-
-	/**
-	 * 设置随机年龄
-	 */
-	public void setAge() {
-		AgeSegmentation[] segmentations = AgeSegmentation.values();
-		// 随机生成年龄段信息
-		int index = random.nextInt(segmentations.length);
-		// 获取随机生成的年龄段
-		AgeSegmentation ageSegmentation = AgeSegmentation.getAgeSegmentationByIndex(index);
-		int res = ageSegmentation.getMaxAge() - ageSegmentation.getMinAge();
-		int age = random.nextInt(res) + ageSegmentation.getMinAge();
-		// 设置年龄分段信息
+		setName(name);
 		setAge(age);
 	}
 
 	/**
-	 * 设置年龄分段信息
+	 * 创建名字
 	 *
-	 * @param segmentation 年龄分段枚举信息
-	 */
-	public void setSegmentation(AgeSegmentation segmentation) {
-		this.segmentation = segmentation;
-	}
-
-	/**
-	 * 设置名字
-	 *
-	 * @param name String 设置名字
+	 * @param name String 人物名字
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -93,36 +55,87 @@ public class Person implements Cloneable {
 	 * 生成随机名字
 	 */
 	public void setName() {
-		setName(CreateNameTools.createName());
+		// 保证名字的长度在2-3个字
+		int nameLen = random.nextInt(2) + 2;
+		// 根据长度生成随机名字
+		String string = CreateNameTools.createName(nameLen);
+		// 给 name 属性赋值
+		setName(string);
 	}
 
 	/**
-	 * 获取名字
+	 * 设置年龄分段
 	 *
-	 * @return String 名字
+	 * @param segmentation AgeSegmentation 年龄分段信息
+	 */
+	private void setSegmentation(AgeSegmentation segmentation) {
+		this.segmentation = segmentation;
+	}
+
+	/**
+	 * 根据年龄设置年龄分段信息
+	 *
+	 * @param age int 年龄
+	 */
+	private void setSegmentation(int age) {
+		AgeSegmentation segmentation = AgeSegmentation.judgeAgeSegmentation(age);
+		setSegmentation(segmentation);
+	}
+
+	/**
+	 * 设置人物的年龄
+	 *
+	 * @param age int 年龄
+	 */
+	public void setAge(int age) {
+		setSegmentation(age);
+		// 设置年龄
+		this.age = age;
+	}
+
+	/**
+	 * 给人物设置随机年龄
+	 */
+	public void setAge() {
+		int min, max, result;
+		// 获取允许的最大年龄以及最小年龄
+		min = AgeSegmentation.getSegmentationAgeMin();
+		max = AgeSegmentation.getSegmentationAgeMax();
+		// 计算最大年龄与最小年龄的差值
+		result = max - min + 1;
+		// 生成随机年龄
+		int age = random.nextInt(result) + min;
+		setAge(age);
+	}
+
+	/**
+	 * 获取人物姓名
+	 * @return String 人物姓名
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * 获取年龄信息
-	 *
-	 * @return int 返回年龄
+	 * 获取人物年龄
+	 * @return int 人物年龄
 	 */
 	public int getAge() {
 		return age;
 	}
 
 	/**
-	 * 获取年龄分段信息
-	 *
+	 * 获取人物年龄分段信息
 	 * @return AgeSegmentation 年龄分段信息
 	 */
 	public AgeSegmentation getSegmentation() {
 		return segmentation;
 	}
 
+	/**
+	 *
+	 * @return String
+	 */
 	@Override
 	public String toString() {
 		return "Person{" +
@@ -133,12 +146,7 @@ public class Person implements Cloneable {
 	}
 
 	@Override
-	public Person clone() {
-		try {
-			// 浅拷贝
-			return (Person) super.clone();
-		} catch (CloneNotSupportedException e) {
-			throw new AssertionError();
-		}
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 }
