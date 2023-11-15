@@ -159,7 +159,7 @@ public enum AgeSegmentation {
 
 	/**
 	 * 根据年龄判断年龄分段
-	 *
+	 * @param age int 输入需要判断年龄分段的数字
 	 * @return AgeSegmentation 年龄分段信息
 	 */
 	public static AgeSegmentation judgeAgeSegmentation(int age) {
