@@ -1,6 +1,7 @@
 package com.fuermao.tools.entity;
 
 import com.fuermao.tools.constant.AgeSegmentation;
+import com.fuermao.tools.constant.Sex;
 import com.fuermao.tools.utils.CreateNameTools;
 
 import java.util.Random;
@@ -24,6 +25,8 @@ public class Person implements Cloneable {
 	 */
 	private AgeSegmentation segmentation;
 
+	private Sex sex;
+
 	{
 		random = new Random();
 	}
@@ -35,11 +38,20 @@ public class Person implements Cloneable {
 		// 随机生成姓名以及年龄
 		setName();
 		setAge();
+		setSex();
 	}
 
 	public Person(String name, int age) {
 		setName(name);
 		setAge(age);
+		// 随机生成性别
+		setSex();
+	}
+
+	public Person(String name, int age, int sexIndex) {
+		this.name = name;
+		this.age = age;
+		this.setSex(sexIndex);
 	}
 
 	/**
@@ -109,7 +121,29 @@ public class Person implements Cloneable {
 	}
 
 	/**
+	 * 随机生成性别
+	 */
+	public void setSex() {
+		int index = random.nextInt((Sex.values().length));
+		setSex(index);
+	}
+
+	/**
+	 * 根据性别的索引设置性别
+	 *
+	 * @param sexIndex int 性别索引
+	 */
+	public void setSex(int sexIndex) {
+		this.sex = Sex.getSexByIndex(sexIndex);
+	}
+
+	public void setSex(Sex sex) {
+		this.sex = sex;
+	}
+
+	/**
 	 * 获取人物姓名
+	 *
 	 * @return String 人物姓名
 	 */
 	public String getName() {
@@ -118,6 +152,7 @@ public class Person implements Cloneable {
 
 	/**
 	 * 获取人物年龄
+	 *
 	 * @return int 人物年龄
 	 */
 	public int getAge() {
@@ -126,13 +161,19 @@ public class Person implements Cloneable {
 
 	/**
 	 * 获取人物年龄分段信息
+	 *
 	 * @return AgeSegmentation 年龄分段信息
 	 */
 	public AgeSegmentation getSegmentation() {
 		return segmentation;
 	}
 
+	public Sex getSex() {
+		return sex;
+	}
+
 	/**
+	 * 返回对象信息
 	 *
 	 * @return String
 	 */
@@ -142,6 +183,7 @@ public class Person implements Cloneable {
 				"name='" + name + '\'' +
 				", age=" + age +
 				", segmentation=" + segmentation +
+				", sex=" + sex +
 				'}';
 	}
 

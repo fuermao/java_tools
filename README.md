@@ -66,6 +66,9 @@
 * `CreateNameTools` 主要用于创建随机名字。该类提供了两个方法，如下：
   * `createName()` 创建随机长度的名字。
   * `createName(int length)` 创建指定长度的名字。
+* `Sex` 枚举类，该类说明了人物的性别信息，目前仅提供了两个常量
+  * `WOMAN("女性", "女", 0)`——女性
+  * `MAN("男性", "男", 1);`——男性
 
 ## 工具类
 ### StatisticsRunTimeTools

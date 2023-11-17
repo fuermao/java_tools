@@ -1,6 +1,7 @@
 package com.fuermao.tools.entity;
 
 import com.fuermao.tools.constant.AgeSegmentation;
+import com.fuermao.tools.constant.Sex;
 import com.fuermao.tools.exception.AgeSegmentationEnumException;
 import com.fuermao.tools.utils.LogToLogger;
 import org.junit.jupiter.api.*;
@@ -95,5 +96,29 @@ class PersonTest {
 				segmentation.getMaxAge()
 		);
 		Assertions.assertNotEquals(age,beforeAge);
+	}
+
+	@RepeatedTest(value = 5)
+	void setSex() {
+		logger.info("原来的信息：{}",p1.toString());
+		p1.setSex();
+		logger.info("更新后的信息：{}",p1.toString());
+	}
+
+	@ParameterizedTest
+	@ValueSource(ints = {0,1})
+	void testSetSex(int sexIndex) {
+		logger.info("原来的信息：{}",p1.toString());
+		p1.setSex(sexIndex);
+		Assertions.assertEquals(sexIndex,p1.getSex().getIndex());
+		logger.info("更新后的信息：{}",p1.toString());
+	}
+
+	@Test
+	void getSex() {
+		Sex p1Sex = Assertions.assertDoesNotThrow(p1::getSex);
+		Sex p2Sex = Assertions.assertDoesNotThrow(p2::getSex);
+		logger.info(p1Sex.toString());
+		logger.info(p2Sex.toString());
 	}
 }
