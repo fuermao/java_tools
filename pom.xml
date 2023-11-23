@@ -7,7 +7,7 @@
     <groupId>com.fuermao</groupId>
     <artifactId>tools</artifactId>
     <version>1.0.8</version>
-
+    <!-- 配置相关变量 -->
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
@@ -155,7 +155,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 </project>
