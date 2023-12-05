@@ -6,7 +6,7 @@
 
     <groupId>com.fuermao</groupId>
     <artifactId>tools</artifactId>
-    <version>1.0.9</version>
+    <version>1.0.10</version>
     <!-- 配置相关变量 -->
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -89,24 +89,19 @@
     </distributionManagement>
     <!-- 项目构建阶段相关配置 -->
     <build>
-        <resources>
-            <resource>
-                <directory>${project.basedir}/src/main/resources</directory>
-                <filtering>true</filtering>
-                <excludes>
-                    <exclude>${project.basedir}/src/main/resources/logback.xml</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>${project.basedir}/src/test/resources</directory>
-                <filtering>true</filtering>
-                <excludes>
-                    <exclude>${project.basedir}/src/test/resources/logback-test.xml</exclude>
-                </excludes>
-            </resource>
-        </resources>
         <!-- 项目构建阶段所使用的插件 -->
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <excludes>
+                        <exclude>${project.basedir}/src/main/resources/logback.xml</exclude>
+                        <exclude>${project.basedir}/src/test/resources/logback-test.xml</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
             <!-- 发布自动管理插件 -->
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
