@@ -6,7 +6,7 @@
 
     <groupId>com.fuermao</groupId>
     <artifactId>tools</artifactId>
-    <version>1.0.11</version>
+    <version>1.0.12</version>
     <!-- 配置相关变量 -->
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -93,12 +93,22 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
+                <!-- 跳过测试 -->
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
                 <configuration>
                     <excludes>
-                        <exclude>${project.basedir}/src/main/resources/logback.xml</exclude>
-                        <exclude>${project.basedir}/src/test/resources/logback-test.xml</exclude>
+                        <!-- 打包的时候，排除配置文件 -->
+                        <exclude>**/logback.xml</exclude>
+                        <exclude>**/logback-test.xml</exclude>
                     </excludes>
                 </configuration>
             </plugin>
