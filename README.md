@@ -75,12 +75,13 @@
 该类用于统计代码运行时间，并通过日志输出代码的运行时间。该类提供了一个静态方法，如下：
 
 * `public static void statistic(IStatisticsRunTimes statisticsRunTimes)` 直接调用该方法即可。
+* `public static void statistic(String name,IStatisticsRunTimes statisticsRunTimes)` 增加输出运行程序的名称，以及统计运行的时间的程序。
+* `public static long statisticRuntimesAndReturn(IStatisticsRunTimes statisticsRunTimes, TimeUnit unit)` 返回程序运行时间，根据时间单位进行返回。
 
 也可实现接口 `IStatisticsRunTimes`。该接口是一个函数式接口。使用方法如下：
 
 ```java
 class StatisticsRunTimeToolsTest {
-	
   @Test
   @DisplayName("测试方法执行的时间")
   void statistic() {
@@ -94,6 +95,19 @@ class StatisticsRunTimeToolsTest {
       };
       StatisticsRunTimeTools.statistic(times);
     });
+  }
+  
+  @ParameterizedTest
+  @EnumSource(value = TimeUnit.class)
+  void statisticRuntimesAndReturn(TimeUnit unit) {
+    long l = StatisticsRunTimeTools.statisticRuntimesAndReturn(() -> {
+      try {
+        TimeUnit.SECONDS.sleep(3);
+      } catch (InterruptedException e) {
+        LogToLogger.throwableToLogger(e,LOGGER);
+      }
+    }, unit);
+    LOGGER.debug("{}",l);
   }
 }
 ```
