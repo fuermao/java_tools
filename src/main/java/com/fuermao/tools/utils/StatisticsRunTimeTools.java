@@ -44,6 +44,7 @@ public class StatisticsRunTimeTools {
     /**
      * 返回程序运行时间，根据时间单位进行范围
      * @param statisticsRunTimes IStatisticsRunTimes 需要被统计运行时间的代码
+     * @param unit TimeUnit 时间单位，如：TimeUnit.NANOSECONDS 即可。
      * @return long 返回值
      */
     public static long statisticRuntimesAndReturn(IStatisticsRunTimes statisticsRunTimes, TimeUnit unit){
