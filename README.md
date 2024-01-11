@@ -1,4 +1,5 @@
 # 工具说明
+[TOC]
 ## 配置类
 ### 日志配色规则类
 > 该自定义转换规则仅适用于 Logback 日志框架。
@@ -120,12 +121,18 @@ class StatisticsRunTimeToolsTest {
  * @param logger Logger 日志记录器
  * @param level Level 日志等级
  */
-public static void log(String logStr,Logger logger,Level level)
+public static void log(String logStr,Logger logger,Level level);
 
 /**
  * 将异常信息记录到日志中
  * @param throwable Throwable 异常信息
  * @param logger Logger 日志记录器
  */
-public static void throwableToLogger(Throwable throwable, Logger logger)
+public static void throwableToLogger(Throwable throwable, Logger logger);
 ```
+
+### CreateCarNumberTools
+该工具类的作用在于生成随机的车牌号码，提供了两个公共方法，如下：
+1. `simpleRandomCreateCarNumber(boolean isNewEnergyVehicles)` 随机生成车牌牌，区分了新能源与然后车
+2. `simpleRandomNormalCarNumber()` 随机生成普通燃油车牌
+3. `simpleRandomNewEnergyVehiclesCarNumber()` 随机生成新能源车牌
