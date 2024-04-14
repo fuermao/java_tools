@@ -1,5 +1,5 @@
 # 工具说明
-[TOC]
+@[toc]
 ## 配置类
 ### 日志配色规则类
 > 该自定义转换规则仅适用于 Logback 日志框架。
@@ -136,3 +136,25 @@ public static void throwableToLogger(Throwable throwable, Logger logger);
 1. `simpleRandomCreateCarNumber(boolean isNewEnergyVehicles)` 随机生成车牌牌，区分了新能源与然后车
 2. `simpleRandomNormalCarNumber()` 随机生成普通燃油车牌
 3. `simpleRandomNewEnergyVehiclesCarNumber()` 随机生成新能源车牌
+
+## 枚举类
+### FileType
+该枚举类用于描述文件类型，该类提供了：
+1. 可执行文件
+   * `SH("sh")`；
+   * `EXE("exe")`；
+   * `DMG("dmg")`；
+2. 文本文件
+   * `TXT("txt")`；
+   * `PDF("pdf")`；
+   * `EPUB("epub")`；
+3. 图片文件
+   * `PNG("png")`；
+   * `JPG("jpg")`；
+4. Java 文件
+   * `JAVA("java")`；
+   * `CLASS("class")`；
+
+并且提供了两个方法用于获取文件类型：
+1. `public static FileType getFileType(int index)`：通过索引值获取文件类型。
+2. `public static FileType getFileType(String suffix)`：通过后缀名获取文件类型。
