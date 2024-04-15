@@ -21,6 +21,7 @@ public enum FileType {
 	TXT("txt"),
 	PDF("pdf"),
 	EPUB("epub"),
+	CSV("csv"),
 	// 图片文件
 	PNG("png"),
 	BMP("bmp"),
