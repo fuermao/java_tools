@@ -23,7 +23,18 @@ public enum FileType {
 	EPUB("epub"),
 	// 图片文件
 	PNG("png"),
+	BMP("bmp"),
 	JPG("jpg"),
+	JPEG("jpeg"),
+	APNG("apng"),
+	AVIF("avif"),
+	SVG("svg"),
+	WEBP("webp"),
+	// 音频文件
+	AU("au"),
+	WAVE("wave"),
+	WAV("wav"),
+	MP4("mp4"),
 	// Java 文件
 	JAVA("java"),
 	CLASS("class");
