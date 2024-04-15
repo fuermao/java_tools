@@ -137,6 +137,11 @@ public static void throwableToLogger(Throwable throwable, Logger logger);
 2. `simpleRandomNormalCarNumber()` 随机生成普通燃油车牌
 3. `simpleRandomNewEnergyVehiclesCarNumber()` 随机生成新能源车牌
 
+### FileTools
+该工具类用于操作文件，提供了 1 个公共方法，如下：
+
+1. `public static String createTempFileName(boolean isTemp, FileType type)` 生成临时文件名。
+
 ## 枚举类
 ### FileType
 该枚举类用于描述文件类型，该类提供了：
