@@ -1,6 +1,8 @@
 package com.fuermao.tools.utils.mime;
 
 import com.fuermao.tools.constant.FileType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.file.Paths;
@@ -17,6 +19,9 @@ import java.util.Objects;
  * </ul>
  */
 public interface MIME {
+	
+	Logger log = LoggerFactory.getLogger(MIME.class);
+	
 	/**
 	 * 获取文件
 	 * @return File
@@ -25,7 +30,9 @@ public interface MIME {
 		String classPathStr = Objects.requireNonNull(MIME.class.getResource("/")).getFile();
 		File classPathFile = new File(classPathStr).getAbsoluteFile();
 		String mimeNameStr = this.getClass().getSimpleName().toLowerCase()+"."+ FileType.CSV.getSuffix();
-		return Paths.get(classPathFile.toString(), "mime", mimeNameStr).toFile();
+		File csv = Paths.get(classPathFile.toString(), "mime", mimeNameStr).toAbsolutePath().toFile();
+		log.debug("即将加载的 MIME 文件是：{}", csv);
+		return csv;
 	}
 
 	/**

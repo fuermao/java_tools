@@ -1,5 +1,6 @@
 package com.fuermao.tools.utils;
 
+import com.fuermao.tools.utils.mime.LoadMIMEFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,6 +69,7 @@ public class MIMETools {
 			loadMIMEFile.load(mimeTypeTable.get(contentType));
 		} catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException |
 		         IllegalAccessException | IOException e) {
+			LogToLogger.throwableToLogger(e, log);
 			throw new RuntimeException(e);
 		}
 	}

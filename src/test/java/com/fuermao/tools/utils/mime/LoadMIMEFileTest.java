@@ -1,4 +1,4 @@
-package com.fuermao.tools.utils;
+package com.fuermao.tools.utils.mime;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;

@@ -1,8 +1,8 @@
 package com.fuermao.tools.utils.mime;
 
 /**
- * <h1></h1>
- * <p></p>
+ * <h1>Application</h1>
+ * <p>Application</p>
  *
  * <ul>
  *  <li>author：Mr.FuErMao</li>

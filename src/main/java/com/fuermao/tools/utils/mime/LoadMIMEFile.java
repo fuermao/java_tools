@@ -1,6 +1,5 @@
-package com.fuermao.tools.utils;
+package com.fuermao.tools.utils.mime;
 
-import com.fuermao.tools.utils.mime.MIME;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +43,7 @@ public class LoadMIMEFile {
 	/**
 	 * 加载 MIME 文件
 	 *
-	 * @param map Map<String, String>       文件名与文件后缀的映射
+	 * @param map Map                       文件名与文件后缀的映射
 	 * @throws ClassNotFoundException       ClassNotFoundException
 	 * @throws NoSuchMethodException        NoSuchMethodException
 	 * @throws InvocationTargetException    InvocationTargetException
@@ -54,6 +53,7 @@ public class LoadMIMEFile {
 	 */
 	public void load(Map<String, String> map) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
 		String mimeClassName = getMIMEClassName();
+		log.debug("负责加载 MIME 类型的 Java 类是：{}", mimeClassName);
 		Class<?> mimeClass = Class.forName(mimeClassName);
 		// 获取无参构造器
 		Constructor<?> constructor = mimeClass.getConstructor();
@@ -68,7 +68,7 @@ public class LoadMIMEFile {
 	 * @return String MIME 类名
 	 */
 	private String getMIMEClassName() {
-		String packageName = this.getClass().getPackage().getName() + "." + "mime";
+		String packageName = this.getClass().getPackage().getName();
 		char c = mimeType.charAt(0);
 		String className = mimeType.replaceFirst(Character.toString(c), Character.toString(Character.toUpperCase(c)));
 		return packageName + "." + className;
