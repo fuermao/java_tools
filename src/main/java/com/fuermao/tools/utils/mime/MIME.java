@@ -17,13 +17,22 @@ import java.util.Objects;
  * </ul>
  */
 public interface MIME {
-
+	/**
+	 * 获取文件
+	 * @return File
+	 */
 	default File getCSVFile(){
 		String classPathStr = Objects.requireNonNull(MIME.class.getResource("/")).getFile();
 		File classPathFile = new File(classPathStr).getAbsoluteFile();
 		String mimeNameStr = this.getClass().getSimpleName().toLowerCase()+"."+ FileType.CSV.getSuffix();
 		return Paths.get(classPathFile.toString(), "mime", mimeNameStr).toFile();
 	}
+
+	/**
+	 * 加载文件
+	 * @param map map
+	 * @throws IOException IOException
+	 */
 	default void loadFile(Map<String, String> map) throws IOException {
 		File file = getCSVFile();
 		if(!file.exists() || !file.isFile()){

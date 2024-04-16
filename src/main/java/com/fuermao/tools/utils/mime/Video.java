@@ -10,6 +10,9 @@ package com.fuermao.tools.utils.mime;
  * </ul>
  */
 public class Video implements MIME{
+	/**
+	 * 构造函数
+	 */
 	public Video() {
 	}
 }

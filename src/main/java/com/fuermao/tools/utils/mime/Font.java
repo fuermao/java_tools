@@ -10,6 +10,9 @@ package com.fuermao.tools.utils.mime;
  * </ul>
  */
 public class Font implements MIME{
+	/**
+	 * 构造方法
+	 */
 	public Font() {
 	}
 }

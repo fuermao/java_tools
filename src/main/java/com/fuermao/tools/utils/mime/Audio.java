@@ -10,6 +10,9 @@ package com.fuermao.tools.utils.mime;
  * </ul>
  */
 public class Audio implements MIME{
+	/**
+	 * 构造函数
+	 */
 	public Audio() {
 	}
 }

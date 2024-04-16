@@ -10,6 +10,9 @@ package com.fuermao.tools.utils.mime;
  * </ul>
  */
 public class Message implements MIME{
+	/**
+	 * 构造函数
+	 */
 	public Message() {
 	}
 }

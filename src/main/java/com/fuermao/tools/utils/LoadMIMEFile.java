@@ -24,6 +24,9 @@ public class LoadMIMEFile {
 
 	private String mimeType;
 
+	/**
+	 * 构造器
+	 */
 	LoadMIMEFile() {
 
 	}
@@ -38,6 +41,17 @@ public class LoadMIMEFile {
 		setMimeType(mimeType);
 	}
 
+	/**
+	 * 加载 MIME 文件
+	 *
+	 * @param map Map<String, String>       文件名与文件后缀的映射
+	 * @throws ClassNotFoundException       ClassNotFoundException
+	 * @throws NoSuchMethodException        NoSuchMethodException
+	 * @throws InvocationTargetException    InvocationTargetException
+	 * @throws InstantiationException       InstantiationException
+	 * @throws IllegalAccessException       IllegalAccessException
+	 * @throws IOException                  IOException
+	 */
 	public void load(Map<String, String> map) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
 		String mimeClassName = getMIMEClassName();
 		Class<?> mimeClass = Class.forName(mimeClassName);
@@ -48,6 +62,11 @@ public class LoadMIMEFile {
 		instance.loadFile(map);
 	}
 
+	/**
+	 * 获取 MIME 类名
+	 *
+	 * @return String MIME 类名
+	 */
 	private String getMIMEClassName() {
 		String packageName = this.getClass().getPackage().getName() + "." + "mime";
 		char c = mimeType.charAt(0);
@@ -55,10 +74,20 @@ public class LoadMIMEFile {
 		return packageName + "." + className;
 	}
 
+	/**
+	 * 获取 MIME 类型
+	 *
+	 * @return String MIME 类型
+	 */
 	public String getMimeType() {
 		return mimeType;
 	}
 
+	/**
+	 * 设置 MIME 类型
+	 *
+	 * @param mimeType String MIME 类型
+	 */
 	public void setMimeType(String mimeType) {
 		// 转换成小写
 		this.mimeType = Objects.requireNonNull(mimeType.toLowerCase(), "mimeType 不能为空");
