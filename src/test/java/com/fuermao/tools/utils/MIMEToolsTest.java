@@ -1,6 +1,10 @@
 package com.fuermao.tools.utils;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,15 +20,21 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class MIMEToolsTest {
+
+	protected static final Logger log = LoggerFactory.getLogger(MIMEToolsTest.class);
+
     static MIMETools mime;
     
     @BeforeAll
     static void beforeAll(){
         mime = MIMETools.getInstance();
     }
-    
-    @Test
-    void parseMIME() {
-        System.out.println(11);
-    }
+
+	@ParameterizedTest
+	@ValueSource(strings={"application/json","image/jpeg"})
+    void parseMIME(String mimeType) {
+		String fileSuffix = mime.parseMIME(mimeType);
+		log.info("mimeType:{},fileSuffix:{}",mimeType,fileSuffix);
+		assertNotNull(fileSuffix);
+	}
 }

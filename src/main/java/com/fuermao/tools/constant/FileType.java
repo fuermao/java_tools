@@ -38,6 +38,7 @@ public enum FileType {
 	MP4("mp4"),
 	// Java 文件
 	JAVA("java"),
+	JAR("jar"),
 	CLASS("class");
 	// 文件后缀
 	private String suffix;
