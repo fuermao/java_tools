@@ -11,7 +11,7 @@
         <withJansi>false</withJansi>
         <encoder>
             <pattern>
-                ┏ %d{yyyy-MM-dd HH:mm:ss.SSS} %customColor([%5level]) [%10.10t] %30.30lo{29}：%n┗ 日志信息：%msg%n
+                ┏ %d{yyyy-MM-dd HH:mm:ss.SSS} %customColor([%5level]) [%10.10t] %30.30lo{29}：%n┗ 运营日志：%msg%n
             </pattern>
         </encoder>
     </appender>

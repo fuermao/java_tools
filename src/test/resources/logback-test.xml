@@ -11,7 +11,7 @@
         <withJansi>false</withJansi>
         <encoder>
             <pattern>
-                %white(┏ %d{yyyy-MM-dd HH:mm:ss.SSS}) %customColor([%5level]) %white([%10.10t] %30.30lo{29})：%n%white(┗ 日志信息：%msg%n)
+                %white(┏ %d{yyyy-MM-dd HH:mm:ss.SSS}) %customColor([%5level]) %white([%10.10t] %30.30lo{29})：%n%white(┗ 测试日志：%msg%n)
             </pattern>
         </encoder>
     </appender>

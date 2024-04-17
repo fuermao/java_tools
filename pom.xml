@@ -105,9 +105,6 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.3.0</version>
                 <configuration>
-                    <includes>
-                        <include>**/*.csv</include>
-                    </includes>
                     <excludes>
                         <!-- 打包的时候，排除配置文件 -->
                         <exclude>**/logback.xml</exclude>
