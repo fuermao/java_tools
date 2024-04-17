@@ -27,12 +27,9 @@ public interface MIME {
 	 * @return File
 	 */
 	default File getCSVFile(){
-		String classPathStr = Objects.requireNonNull(MIME.class.getClassLoader().getResource("")).getFile();
-		File classPathFile = new File(classPathStr).getAbsoluteFile();
+		// 获取类路径下的文件名
 		String mimeNameStr = this.getClass().getSimpleName().toLowerCase()+"."+ FileType.CSV.getSuffix();
-		File csv = Paths.get(classPathFile.toString(), "mime", mimeNameStr).toAbsolutePath().toFile();
-		log.debug("即将加载的 MIME 文件是：{}", csv);
-		return csv;
+        return Paths.get( "mime", mimeNameStr).toFile();
 	}
 
 	/**
@@ -41,11 +38,11 @@ public interface MIME {
 	 * @throws IOException IOException
 	 */
 	default void loadFile(Map<String, String> map) throws IOException {
-		File file = getCSVFile();
-		if(!file.exists() || !file.isFile()){
-			throw new FileNotFoundException("文件"+file.getName()+"不存在！");
-		}
-		try(LineNumberReader reader = new LineNumberReader(new FileReader(file))) {
+		File csvFile = getCSVFile();
+		log.debug("即将加载的 MIME 文件是：{}", csvFile);
+		try(InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream(csvFile.getPath());
+		    LineNumberReader reader = new LineNumberReader(new InputStreamReader(Objects.requireNonNull(resourceAsStream)))) {
+			// 跳过第一行，再读取 CSV 文件中的每一行。
 			reader.lines().skip(1).forEach(line -> {
 				String[] split = line.split(",");
 				if (split.length >= 2){
@@ -53,7 +50,7 @@ public interface MIME {
 				}
 			});
 		} catch (IOException exception){
-			throw new IOException("文件"+file.getName()+"读取失败！");
+			throw new IOException("文件 "+csvFile.getPath()+" 读取失败！");
 		}
-	}
+    }
 }
