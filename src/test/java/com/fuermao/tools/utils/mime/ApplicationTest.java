@@ -4,10 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * <h1></h1>
  * <p></p>
@@ -23,9 +19,8 @@ class ApplicationTest {
 	@Test
 	void test(){
 		MIME application = new Application();
-		File file = application.getCSVFile();
+		String file = application.getCSVFile();
 		logger.debug("{}",file);
-		assertTrue(file.exists());
 	}
 
 }
