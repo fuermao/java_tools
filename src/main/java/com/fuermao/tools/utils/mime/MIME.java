@@ -27,7 +27,7 @@ public interface MIME {
 	 * @return File
 	 */
 	default File getCSVFile(){
-		String classPathStr = Objects.requireNonNull(MIME.class.getResource("/")).getFile();
+		String classPathStr = Objects.requireNonNull(MIME.class.getClassLoader().getResource("")).getFile();
 		File classPathFile = new File(classPathStr).getAbsoluteFile();
 		String mimeNameStr = this.getClass().getSimpleName().toLowerCase()+"."+ FileType.CSV.getSuffix();
 		File csv = Paths.get(classPathFile.toString(), "mime", mimeNameStr).toAbsolutePath().toFile();
