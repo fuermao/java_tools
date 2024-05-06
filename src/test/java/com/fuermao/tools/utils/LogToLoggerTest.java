@@ -32,4 +32,12 @@ class LogToLoggerTest {
 		});
 		LogToLogger.throwableToLogger(classNotFoundException,logger);
 	}
+
+	@Test
+	void testThrowableToLogger() {
+		ClassNotFoundException classNotFoundException = assertThrows(ClassNotFoundException.class, () -> {
+			Class.forName("com.fuermao.tools.Dog");
+		});
+		LogToLogger.throwableToLogger("未找到指定的类！",classNotFoundException,logger);
+	}
 }
