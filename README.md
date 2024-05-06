@@ -129,6 +129,15 @@ public static void log(String logStr,Logger logger,Level level);
  * @param logger Logger 日志记录器
  */
 public static void throwableToLogger(Throwable throwable, Logger logger);
+
+/**
+ * 将异常信息记录到日志中，并允许添加自定义信息
+ *
+ * @param msg       {@code String} 自定义信息
+ * @param throwable {@code Throwable} 异常信息
+ * @param logger    {@code Logger} 日志记录器
+ */
+public static void throwableToLogger(String msg, Throwable throwable, Logger logger);
 ```
 
 ### CreateCarNumberTools
