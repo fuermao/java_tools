@@ -151,6 +151,12 @@ public static void throwableToLogger(String msg, Throwable throwable, Logger log
 
 1. `public static String createTempFileName(boolean isTemp, FileType type)` 生成临时文件名。
 
+### DataProvider
+该工具类用于提供数据，比如：生成随机手机号、生成随机邮箱号等功能。
+
+1. `public static String mobile()` 生成随机手机号，比如：13701234567
+2. `public static String email()` 生成随机邮箱，比如：OY41qpSm9JOvc5DyeeNUq@163.com
+
 ## 枚举类
 ### FileType
 该枚举类用于描述文件类型，该类提供了：
