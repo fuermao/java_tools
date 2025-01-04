@@ -156,6 +156,9 @@ public static void throwableToLogger(String msg, Throwable throwable, Logger log
 
 1. `public static String mobile()` 生成随机手机号，比如：13701234567
 2. `public static String email()` 生成随机邮箱，比如：OY41qpSm9JOvc5DyeeNUq@163.com
+3. `public static String account()` 生成随生成用户名，比如：P7KTFvT9gdul
+4. `public static String account(boolean isPinYin)` 生成按照拼音生成用户名，比如：dengmiping
+5. `public static String password()` 生成强密码，比如：H$q}!LGd1cGF
 
 ## 枚举类
 ### FileType
