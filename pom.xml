@@ -137,10 +137,12 @@
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.5.0</version>
+                <version>0.6.0</version>
                 <extensions>true</extensions>
+                <!-- 配置属性参见 https://central.sonatype.org/publish/publish-portal-maven/#plugin-configuration-options -->
                 <configuration>
-                    <publishingServerId>central-portal-sonatype</publishingServerId>
+                    <!-- 需要与 Maven 全局配置中的 Server 标签中的一致 -->
+                    <publishingServerId>sonatype-token</publishingServerId>
                     <deploymentName>java 工具-${project.version}</deploymentName>
                     <checksums>all</checksums>
                 </configuration>
@@ -177,7 +179,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.2.7</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -186,9 +188,9 @@
                             <goal>sign</goal>
                         </goals>
                         <configuration>
-                            <keyname>${gpg.keyname}</keyname>
                             <!-- setting.xml 中 server.id 为 GPG 密钥短语 -->
                             <passphraseServerId>${gpg.keyname}</passphraseServerId>
+                            <keyname>${gpg.keyname}</keyname>
                             <gpgArguments>
                                 <arg>--pinentry-mode</arg>
                                 <arg>loopback</arg>
