@@ -179,5 +179,18 @@ public static void throwableToLogger(String msg, Throwable throwable, Logger log
    * `CLASS("class")`；
 
 并且提供了两个方法用于获取文件类型：
+
 1. `public static FileType getFileType(int index)`：通过索引值获取文件类型。
 2. `public static FileType getFileType(String suffix)`：通过后缀名获取文件类型。
+
+### HttpStatusCode
+该枚举类用于描述 HTTP 状态码，该类提供了 2 个常量：
+
+1. `code` 响应状态码
+2. `message` 响应状态码对应的信息
+
+并且提供了两个方法用于获取 HTTP 状态码相关信息：
+
+1. `public int getCode()` 获取响应状态码；
+2. `public String getMessage()` 获取响应状态码对应的信息。
+3. `public static HttpStatusCode getHttpStatusCode(int code)` 通过响应状态码获取 HTTP 状态码相关信息。
